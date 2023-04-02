@@ -23,7 +23,7 @@
                               <router-link to="/" class="nav-link">Početna</router-link>
                             </li>
                             <li class="nav-item">
-                              <router-link to="/" class="nav-link">Kosarica</router-link>
+                              <router-link to="/cart" class="nav-link">Kosarica</router-link>
                             </li>
                              <li class="nav-item">
                               <router-link to="/" class="nav-link">O applikaciji</router-link>
@@ -35,49 +35,12 @@
               </div>
             </div>
           </nav>
-           <table class="table table-hover"> 
-            <thead> 
-                <th scope="coll">Naziv </th>
-                <th scope="coll">Cijena </th>
-                <th scope="coll">Slika </th>
-                <th scope="coll">Kolicina </th>
-
-            </thead>
-            <tbody>
-                <tr>
-                  <td>Baconburger </td>
-                  <td> 8$ </td>
-                  <td><img src="../public/Images/Burgers/Baconburger.jpg" height="100" class="d-inline-block align-top" alt=""
-                            loading="lazy" /> </td>
-                  <td> 1 </td>
-                </tr>
-
-                <tr>
-                  <td>Kebab </td>
-                  <td> 6$ </td>
-                  <td><img src="../public/Images/Kebab/Kebab.jpg" height="100" class="d-inline-block align-top" alt=""
-                            loading="lazy" /> </td>
-                  <td> 1 </td>
-                </tr>
-
-                <tr>
-                  <td>Pizza Mexicana </td>
-                  <td> 10$ </td>
-                  <td><img src="../public/Images/Pizza/PizzaMexicana.jpg" height="100" class="d-inline-block align-top" alt=""
-                            loading="lazy" /> </td>
-                  <td> 1 </td>
-                </tr>
-
-                <tr>
-                  <td>Fried Calamari </td>
-                  <td> 15$ </td>
-                  <td><img src="../public/Images/Seafood/FriedCalamari.jpg" height="100" class="d-inline-block align-top" alt=""
-                            loading="lazy" /> </td>
-                  <td> 1 </td>
-                </tr>
-              </tbody>
-              </table>
+           
         </div>
+          <div class="container">
+          <router-view />
+          <!-- tu router dinamicki ubaci screen -->
+          </div>
       </div>
     </div>
 
