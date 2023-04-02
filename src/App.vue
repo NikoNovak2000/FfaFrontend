@@ -23,7 +23,7 @@
                               <router-link to="/" class="nav-link">Početna</router-link>
                             </li>
                             <li class="nav-item">
-                              <router-link to="/" class="nav-link">Kosarica</router-link>
+                              <router-link to="/cart" class="nav-link">Kosarica</router-link>
                             </li>
                              <li class="nav-item">
                               <router-link to="/" class="nav-link">O applikaciji</router-link>
