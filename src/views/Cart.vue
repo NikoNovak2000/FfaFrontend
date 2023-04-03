@@ -11,7 +11,6 @@
                 <th scope="coll">Cijena </th>
                 <th scope="coll">Slika </th>
                 <th scope="coll">Kolicina </th>
-
             </thead>
 
             <tbody> 
@@ -20,11 +19,26 @@
                     <td>{{item.price}} $</td>
                     <td><img :src="item.img" :height = "50"></td>
                     <td>{{item.quantity}} </td>
+                    <td> 
+                        <div class="btn-group" role="group">
+                            <button
+                            type="button"
+                            class="btn btn-info btn-sm"
+                            @click="povecajItemUCart(item)"> Uvecaj </button>
+                        </div> 
+                    </td>
+                    <td> 
+                        <div class="btn-group" role="group">
+                            <button
+                            type="button"
+                            class="btn btn-danger btn-sm"
+                            @click="umanjiKolicinuCart(item)"> Umanji </button>
+                        </div> 
+                    </td>
                 </tr> 
             </tbody>
 
         </table>
-       
   </div>
 </template>
 
@@ -44,7 +58,7 @@ export default{
   components: {
     
   },
-
+ 
   methods:{
       dohvatiItem(){
      axios.get('http://127.0.0.1:5000/app/cart')
@@ -59,13 +73,34 @@ export default{
       
     },
 
+   povecajItem(item) {
+    axios.post('http://127.0.0.1:5000/app/cart/dodaj', item)
+      .then((response) => {
+      })
+  },
 
+   povecajItemUCart(item){
+    this.povecajItem(item),
+    this.dohvatiItem();
+    location.reload();
+  },
+
+  umanjiKolicinu(item){
+    axios.post('http://127.0.0.1:5000/app/cart/umanji',item)
+    .then((response) => {
+         console.log('Ovo su podaci koji se dohvacaju' + response.data.data)
+      })
+  },
+
+  umanjiKolicinuCart(item){
+    this.umanjiKolicinu(item);
+    this.dohvatiItem();
+    location.reload();
+  },
 },
 mounted(){
     this.dohvatiItem();
   }
   
 }
-
-
 </script>
