@@ -1,4 +1,3 @@
-
 <template>
 <head>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/sketchy/bootstrap.min.css" integrity="sha384-RxqHG2ilm4r6aFRpGmBbGTjsqwfqHOKy1ArsMhHusnRO47jcGqpIQqlQK/kmGy9R" crossorigin="anonymous">
@@ -39,6 +38,32 @@
             </tbody>
 
         </table>
+          <div>
+        <button @click="showModal = true; izracunajUkupnuCijenu()">Ispisi Racun</button>
+          <div v-if="showModal" class="modal">
+           <div class="modal-content">
+          <span @click="showModal = false" class="close">&times;</span>
+          <h1> RACUN </h1>
+          <ol>
+          <li v-for="(item, index) in items" :key="index"> 
+                    {{item.quantity}}
+                    x 
+                    {{item.name}}
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    {{item.price}} €
+          </li>
+          </ol>
+          <p> Ukupna cijena: {{racun}} € </p>
+          <div><label>Unesite adresu stanovanja: </label> &nbsp; &nbsp; <input type="text"> </div>
+          <div><label>Unesite telefonski broj: </label> &nbsp; &nbsp;<input type="text"> </div>
+          <button class="btn btn-info btn-sm" @click="showModal = false"> Završi narudžbu </button>
+      </div>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -52,7 +77,9 @@ export default{
   el: '#app',
   data() {
     return {
-      items: []
+      items: [],
+      showModal: false,
+      racun: 0
     }
     },
   components: {
@@ -97,10 +124,67 @@ export default{
     this.dohvatiItem();
     location.reload();
   },
+
+  izracunajUkupnuCijenu(){
+    var artikli = this.items
+
+    for(var i = 0; i < artikli.length; i++){
+      console.log(artikli[i])
+      console.log(this.racun)
+      this.racun += artikli[i].quantity * artikli[i].price
+    }
+   
+  },
+
+
 },
 mounted(){
     this.dohvatiItem();
   }
   
 }
+
 </script>
+
+
+<style scoped>
+/* The Modal (background) */
+.modal {
+  display: flex;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+}
+
+/* Close Button */
+.close {
+  color: #aaaaaa;
+  font-size: 28px;
+  font-weight: bold;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+</style>
